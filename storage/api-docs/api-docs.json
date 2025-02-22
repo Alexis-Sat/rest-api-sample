@@ -1,0 +1,476 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API Documentation",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/organization/address": {
+            "get": {
+                "tags": [
+                    "findByAddress"
+                ],
+                "summary": "Get list of organizations by address",
+                "description": "Returns list of buildings with organizations by address",
+                "operationId": "findByAddress",
+                "parameters": [
+                    {
+                        "name": "address",
+                        "in": "query",
+                        "description": "Address of organzation",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "suite"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/components/schemas/Address"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "400": {
+                        "description": "Error"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/api/organization/coordinates": {
+            "get": {
+                "tags": [
+                    "findByCoordinates"
+                ],
+                "summary": "Get list of organizations by coordinates",
+                "description": "Returns list of buildings with organizations by coordinates",
+                "operationId": "findByCoordinates",
+                "parameters": [
+                    {
+                        "name": "latitude",
+                        "in": "query",
+                        "description": "Latitude",
+                        "required": true,
+                        "schema": {
+                            "type": "number"
+                        },
+                        "example": "100.1"
+                    },
+                    {
+                        "name": "longitude",
+                        "in": "query",
+                        "description": "Longitude",
+                        "required": true,
+                        "schema": {
+                            "type": "number"
+                        },
+                        "example": "100.1"
+                    },
+                    {
+                        "name": "distance",
+                        "in": "query",
+                        "description": "Distance",
+                        "required": true,
+                        "schema": {
+                            "type": "number"
+                        },
+                        "example": "100000.1"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/components/schemas/Address"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "400": {
+                        "description": "Error"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/api/organization/building": {
+            "get": {
+                "tags": [
+                    "findByBuilding"
+                ],
+                "summary": "Get list of organizations by building id",
+                "description": "Returns list of buildings with organizations by building id",
+                "operationId": "findByBuilding",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "description": "ID of building",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": "1"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/components/schemas/Address"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "400": {
+                        "description": "Error"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/api/organization/business": {
+            "get": {
+                "tags": [
+                    "findByBusiness"
+                ],
+                "summary": "Get list of organizations by business",
+                "description": "Returns list of buildings with organizations by business",
+                "operationId": "findByBusiness",
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "Name of the Business type",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "Еда"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Organization"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "400": {
+                        "description": "Error"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/api/organization/id": {
+            "get": {
+                "tags": [
+                    "findById"
+                ],
+                "summary": "Get the organization by id",
+                "description": "Returns the organization by id",
+                "operationId": "findById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "description": "ID of the Organization",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        },
+                        "example": "1"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/components/schemas/FullOrgInfo"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "400": {
+                        "description": "Error"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/api/organization/name": {
+            "get": {
+                "tags": [
+                    "findByName"
+                ],
+                "summary": "Get the organization by name",
+                "description": "Returns the organization by name",
+                "operationId": "findByName",
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "Name of the Organization",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "inc"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/components/schemas/FullOrgInfo"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "400": {
+                        "description": "Error"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Building": {
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": "100"
+                    },
+                    "address": {
+                        "description": "Building address",
+                        "type": "string"
+                    },
+                    "address_latitude": {
+                        "type": "number",
+                        "example": "100"
+                    },
+                    "address_longitude": {
+                        "type": "number",
+                        "example": "10000"
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "Business"
+                }
+            },
+            "Address": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Business"
+                    },
+                    {
+                        "properties": {
+                            "organizations": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/Organization"
+                                }
+                            }
+                        },
+                        "type": "object"
+                    }
+                ]
+            },
+            "Business": {
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "name": {
+                        "description": "Business name",
+                        "type": "string"
+                    },
+                    "parent_id": {
+                        "type": "integer",
+                        "example": "1"
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "Business"
+                }
+            },
+            "FullOrgInfo": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Organization"
+                    },
+                    {
+                        "properties": {
+                            "building": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/Building"
+                                }
+                            }
+                        },
+                        "type": "object"
+                    }
+                ]
+            },
+            "Organization": {
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "name": {
+                        "description": "Organization name",
+                        "type": "string"
+                    },
+                    "phone": {
+                        "description": "Organization phones",
+                        "type": "string",
+                        "example": "main:+797879888"
+                    },
+                    "building_id": {
+                        "type": "integer",
+                        "example": "1"
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "Organization"
+                }
+            }
+        },
+        "securitySchemes": {
+            "api_key": {
+                "type": "apiKey",
+                "description": "Api key",
+                "name": "token",
+                "in": "header"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "findByAddress",
+            "description": "findByAddress"
+        },
+        {
+            "name": "findByCoordinates",
+            "description": "findByCoordinates"
+        },
+        {
+            "name": "findByBuilding",
+            "description": "findByBuilding"
+        },
+        {
+            "name": "findByBusiness",
+            "description": "findByBusiness"
+        },
+        {
+            "name": "findById",
+            "description": "findById"
+        },
+        {
+            "name": "findByName",
+            "description": "findByName"
+        }
+    ],
+    "security": [
+        {
+            "token": []
+        }
+    ]
+}
